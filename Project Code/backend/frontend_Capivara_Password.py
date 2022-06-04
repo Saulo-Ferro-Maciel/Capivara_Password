@@ -39,7 +39,7 @@ box = '''
                         text: "1st step:".title()
                         font_size: 21
                         size_hint_x: 0.9
-                        pos_hint: {'center_x':0.46, 'center_y':0.85}
+                        pos_hint: {'center_x':0.46, 'center_y':0.99}
                         width:200
                         theme_text_color: "Custom"
                         text_color: app.theme_cls.primary_color
@@ -49,7 +49,7 @@ box = '''
                         font_size: 18
                         size_hint_x: 0.9
                         hint_text: str('User:')
-                        pos_hint: {'center_x':0.5, 'center_y':0.68}
+                        pos_hint: {'center_x':0.5, 'center_y':0.79}
                         icon_right: 'account-edit-outline'
                         icon_right_color: app.theme_cls.primary_color
                         width:200
@@ -62,7 +62,7 @@ box = '''
                         font_size: 18
                         size_hint_x: 0.9
                         hint_text: str('Choose a Word:')
-                        pos_hint: {'center_x':0.5, 'center_y':0.47}
+                        pos_hint: {'center_x':0.5, 'center_y':0.60}
                         icon_right: 'lock-plus-outline'
                         icon_right_color: app.theme_cls.primary_color
                         width:200
@@ -70,11 +70,24 @@ box = '''
                         helper_text_mode: "on_focus"
                         required: False
 
+                    MDTextField:
+                        id: site
+                        font_size: 18
+                        size_hint_x: 0.9
+                        hint_text: str('Website:')
+                        pos_hint: {'center_x':0.5, 'center_y':0.38}
+                        icon_right: 'web'
+                        icon_right_color: app.theme_cls.primary_color
+                        width:200
+                        helper_text: str('Site or Web Platform').center(5)
+                        helper_text_mode: "on_focus"
+                        required: False
+
                     MDRectangleFlatIconButton:
                         id: button1
                         icon: "numeric-6-box"
                         size_hint_x: 0.4
-                        pos_hint: {'center_x':0.25, 'center_y':0.25}
+                        pos_hint: {'center_x':0.25, 'center_y':0.15}
                         text: "character".upper().center(5)
                         halign: "center"
                         theme_text_color: "Custom"
@@ -83,14 +96,14 @@ box = '''
                         theme_icon_color: "Custom"
                         icon_color: app.theme_cls.primary_color
                         on_release:
-                            root.button6(user.text, word.text)
+                            root.button6(user.text, word.text, site.text)
 
                     MDLabel:
                         text: "-or-".upper()
                         halign: "center"
                         size_hint_x: 0.9
                         font_size: 13
-                        pos_hint: {'center_x':0.5, 'center_y':0.25}
+                        pos_hint: {'center_x':0.5, 'center_y':0.15}
                         theme_text_color: "Custom"
                         text_color: app.theme_cls.primary_color
 
@@ -98,7 +111,7 @@ box = '''
                         id: button2
                         icon: "numeric-9-box"
                         size_hint_x: 0.4
-                        pos_hint: {'center_x':0.75, 'center_y':0.25}
+                        pos_hint: {'center_x':0.75, 'center_y':0.15}
                         text: "character".upper().center(5)
                         halign: "center"
                         theme_text_color: "Custom"
@@ -107,13 +120,13 @@ box = '''
                         theme_icon_color: "Custom"
                         icon_color: app.theme_cls.primary_color
                         on_release:
-                            root.button9(user.text, word.text)
+                            root.button9(user.text, word.text, site.text)
                     
                     MDLabel:
                         text: "2st step:".title()
                         font_size: 21
                         size_hint_x: 0.9
-                        pos_hint: {'center_x':0.46, 'center_y':0.09}
+                        pos_hint: {'center_x':0.46, 'center_y':0.002}
                         width:200
                         theme_text_color: "Custom"
                         text_color: app.theme_cls.primary_color
@@ -125,7 +138,7 @@ box = '''
                         padding: "3dp"
                         radius: 6
                         elevation: 7
-                        pos_hint: {'center_x':0.5, 'center_y':-0.60}
+                        pos_hint: {'center_x':0.5, 'center_y':-0.65}
                         md_bg_color: 0.35, 0.55, 0.65, 1
 
                         ScrollView:
@@ -135,61 +148,16 @@ box = '''
 
                             MDList:
                                 id: container
-
     MDNavigationDrawer:
         id: nav_drawer
         NavigationDrawer:
-
-<AlertaCard>:
-
-
-    MDCard:
-
-        size_hint: 0.6 , 0.20
-        height: "200dp"
-        padding: "3dp"
-        radius: 6
-        elevation: 20
-        pos_hint: {'center_x':0.5, 'center_y':0.66}
-
-    
-        MDToolbar:
-            title: "Alert:"
-            size_hint: 0.10 , 0.20
-            pos_hint: {'center_x':0.5, 'center_y':0.99}
-            #elevation: 20
-    
-        MDIconButton:
-            icon: "close-box-multiple-outline"
-            theme_text_color: "Custom"
-            text_color: 25, 0, 0, 1
-            pos_hint: {'center_x':0.9, 'center_y':0.99}
-            on_release:
-                app.root.get_screen('tela1').closeCard()
-                root.close()
-
-
-    MDLabel
-        text: 'You cannot enter than 3 digits'
-        font_style:  'Subtitle2'
-        font_size: 15
-        pos_hint: {'center_x':0.745, 'center_y':0.705}
-
-    MDLabel
-        text: 'or more than the limit of the'
-        font_style:  'Subtitle2'
-        font_size: 15
-        pos_hint: {'center_x':0.745, 'center_y':0.68}
-
-    MDLabel
-        text: 'buttons.'
-        font_style:  'Subtitle2'
-        font_size: 15
-        pos_hint: {'center_x':0.745, 'center_y':0.655}
-
+            
 <MDThreeLineListItem1>:
-
-        
+<MDThreeLineAvatarIconListItem1>:
+    IconRightWidget:
+        icon: 'plus-box-multiple'
+        on_release:
+            root.buttonTest()
                                               
 ScreenManager: 
     Tela1:
