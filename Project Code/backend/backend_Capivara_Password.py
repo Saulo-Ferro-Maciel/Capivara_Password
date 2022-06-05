@@ -1,5 +1,7 @@
 from box2 import*
+import sqlite3 as sq3
 from random import randint as ran
+from datetime import datetime as data
 
 from kivy.lang import Builder as bd # cria o metódo construir 
 from kivy.core.window import Window as tamaño_pantalla # regula o tamanho da janela
@@ -17,11 +19,38 @@ tamaño_pantalla.size = tamaño_patalla
 tamaño_pantalla.minimum_width = 400
 tamaño_pantalla.minimum_height = 400
 
-class MDThreeLineAvatarIconListItem1(three_Line_List):
+class dataBase():
+    def conecta_banco_d_dados(self):
+        self.conecta = sq3.connect('password_banco_de_Dados')
+        self.cursor = self.conecta.cursor()
+
+    def desconecta_banco_d_dados(self):
+        self.conecta.close()
+
+    def monta_banco_em_tabela(self):
+        self.conecta_banco_d_dados()
+        
+        #Cria tabela:
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS password(
+                cod INTEGER PRIMARY KEY,
+                senha CHAR(40) NOT NULL,
+                user CHAR(40),
+                site CHAR(40),
+                data CHAR(40)
+                
+            );
+        ''')
+
+        self.conecta.commit() 
+        self.desconecta_banco_d_dados()
+
+class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
     text = StringProperty("")
     secondary_text = StringProperty("")
     tertiary_text = StringProperty("")
     my_dialog = None
+    dictionary_Text = None
 
     def __int__(self):
         self.text
@@ -58,8 +87,22 @@ class MDThreeLineAvatarIconListItem1(three_Line_List):
         self.my_dialog.open()
 
     def saveButton(self, obj):
-        print(self.my_dialog.text)
+
+        self.conecta_banco_d_dados()
+        self.monta_banco_em_tabela()
+        
+        data_actual = data.now()
+        data_actual = data_actual.strftime("%d/%m/%Y")
+
+        convertText = f'{self.text},{self.secondary_text},{self.tertiary_text}, {data_actual}'
+        convertText = convertText.split(',')
+
+        list_key = ['text1','text2','text3','data']
+        self.dictionary_Text = dict(zip(list_key,convertText))
+        
+        print(self.dictionary_Text)
         self.closeButton(obj)
+
     
     def closeButton(self, obj):
         self.my_dialog.dismiss()
@@ -239,8 +282,8 @@ class Tela1(Screen):
         for i in list:
             text1, secondaryText, tertiaryText = i, bb, site
            
-            if len(secondaryText) and len(tertiaryText) == 0:
-                secondaryText ='User and Site not informed'
+            if len(secondaryText) == len(tertiaryText) == 0:
+                secondaryText ='User not informed'
                 tertiaryText = 'Site not informed'
                 test_Three_Text_List_Item1 = MDThreeLineAvatarIconListItem1()
                 a.add_widget(test_Three_Text_List_Item1)
@@ -358,7 +401,7 @@ class Tela1(Screen):
         for i in list:
             text1, secondaryText, tertiaryText = i, bb, site
 
-            if len(secondaryText) and len(tertiaryText) == 0:
+            if len(secondaryText) == len(tertiaryText) == 0:
                     secondaryText ='User not informed'
                     tertiaryText = 'Site not informed'
                     test_Three_Text_List_Item1 = MDThreeLineAvatarIconListItem1()
