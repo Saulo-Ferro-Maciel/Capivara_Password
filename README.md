@@ -3,6 +3,11 @@
 **About the project:**  
 trying to create a password manager
 
+**Programming Languages ​​Used**
+1. Python
+2. SQL
+3. Kvlang
+
 **Developer Contact:**                                 
 1. maciel.ferro@acad.ifma.edu.br                          
 2. kogasaal@gmail.com                                  
