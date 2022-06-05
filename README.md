@@ -2,9 +2,9 @@
 
 **About the project:**  
 
-trying to create a password manager
+>trying to create a password manager
 
-**Programming Languages ​​Used**
+**Programming Languages ​​Used:**
 1. Python
 2. SQL
 3. Kivylang - kivy language
