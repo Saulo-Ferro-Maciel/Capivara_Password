@@ -2,7 +2,7 @@
 
 **About the project:**  
 
->trying to create a password manager
+**trying to create a password manager
 
 **Programming Languages ​​Used**
 1. Python
