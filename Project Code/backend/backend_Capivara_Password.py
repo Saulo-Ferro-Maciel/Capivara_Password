@@ -44,6 +44,15 @@ class dataBase():
 
         self.conecta.commit() 
         self.desconecta_banco_d_dados()
+    
+    def passwordAdd(self, value1, value2, value3, value4):
+        self.conecta_banco_d_dados()
+
+        self.cursor.execute("""INSERT INTO password (senha, user, site, data)
+        VALUES (?,?,?,?)""", (value1, value2, value3, value4))
+        self.conecta.commit()
+
+        self.desconecta_banco_d_dados()
 
 class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
     text = StringProperty("")
@@ -87,9 +96,6 @@ class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
         self.my_dialog.open()
 
     def saveButton(self, obj):
-
-        self.conecta_banco_d_dados()
-        self.monta_banco_em_tabela()
         
         data_actual = data.now()
         data_actual = data_actual.strftime("%d/%m/%Y")
@@ -101,6 +107,9 @@ class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
         self.dictionary_Text = dict(zip(list_key,convertText))
         
         print(self.dictionary_Text)
+        self.monta_banco_em_tabela()
+
+        self.passwordAdd(self.dictionary_Text['text1'],self.dictionary_Text['text2'], self.dictionary_Text['text3'], self.dictionary_Text['data'] )
         self.closeButton(obj)
 
     
