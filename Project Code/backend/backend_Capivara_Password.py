@@ -6,7 +6,8 @@ from datetime import datetime as data
 from kivy.lang import Builder as bd # cria o metódo construir 
 from kivy.core.window import Window as tamaño_pantalla # regula o tamanho da janela
 from kivy.uix.screenmanager import Screen # tela
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty 
+from kivy.properties import ObjectProperty
 
 from kivymd.app import MDApp as md_application # cria a janela
 from kivymd.uix.boxlayout import MDBoxLayout as Box
@@ -111,7 +112,6 @@ class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
 
         self.passwordAdd(self.dictionary_Text['text1'],self.dictionary_Text['text2'], self.dictionary_Text['text3'], self.dictionary_Text['data'] )
         self.closeButton(obj)
-
     
     def closeButton(self, obj):
         self.my_dialog.dismiss()
@@ -131,7 +131,14 @@ class MDThreeLineListItem1(three_Line_List2):
         self.secondary_text = "You don't need to fill in the text fields"
         self.tertiary_text = "You just need to press the button"
 
+class ContentNavigationDrawer(Box):
+    screen_manager = ObjectProperty()
+    nav_drawer = ObjectProperty()
+
 class NavigationDrawer(Box):
+    pass
+
+class Tela2(Screen):
     pass
 
 class Tela1(Screen):
