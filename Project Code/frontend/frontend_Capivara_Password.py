@@ -153,17 +153,23 @@ box = '''
 
         MDList:
 
-            OneLineListItem:
-                text: " generate password".title().center(25)
-                on_press:
+            OneLineIconListItem:
+                text: " generate password".title().center(20)
+                on_release:
                     root.nav_drawer.set_state("close")
                     root.screen_manager.current = "tela1"
+                IconLeftWidget:
+                    icon: "lock-plus"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
 
-            OneLineListItem:
-                text: "saved passwords".title().center(25)
+            OneLineIconListItem:
+                text: "saved passwords".title().center(20)
                 on_press:
                     root.nav_drawer.set_state("close")
                     root.screen_manager.current = "tela2"
+                IconLeftWidget:
+                    icon: "content-save-edit"
 
 MDScreen:   
     BoxLayout:
