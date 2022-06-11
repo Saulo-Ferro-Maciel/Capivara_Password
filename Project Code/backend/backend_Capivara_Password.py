@@ -9,12 +9,13 @@ from kivy.uix.screenmanager import Screen # tela
 from kivy.properties import StringProperty 
 from kivy.properties import ObjectProperty
 
+from kivymd.uix.dialog import *
+from kivymd.uix.button import MDIconButton
+from kivymd.uix.list import OneLineIconListItem
 from kivymd.app import MDApp as md_application # cria a janela
 from kivymd.uix.boxlayout import MDBoxLayout as Box
 from kivymd.uix.list import ThreeLineAvatarIconListItem as three_Line_List
 from kivymd.uix.list import ThreeLineListItem as three_Line_List2
-from kivymd.uix.dialog import *
-from kivymd.uix.button import MDIconButton
 
 tamaño_pantalla.size = tamaño_patalla
 tamaño_pantalla.minimum_width = 400
@@ -54,6 +55,9 @@ class dataBase():
         self.conecta.commit()
 
         self.desconecta_banco_d_dados()
+
+class CustomOneLineIconListItem(OneLineIconListItem):
+    icon = StringProperty()
 
 class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
     text = StringProperty("")
@@ -452,7 +456,7 @@ class App_principal(md_application):
         self.theme_cls.primary_hue = '500'
         app_layout= bd.load_string(box)
         return app_layout
-           
+     
 if __name__ == '__main__':
     project = App_principal()
     project.run()
