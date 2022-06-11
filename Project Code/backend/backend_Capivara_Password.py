@@ -3,17 +3,17 @@ import sqlite3 as sq3
 from random import randint as ran
 from datetime import datetime as data
 
-from kivy.lang import Builder as bd # cria o metódo construir 
-from kivy.core.window import Window as tamaño_pantalla # regula o tamanho da janela
-from kivy.uix.screenmanager import Screen # tela
 from kivy.properties import StringProperty 
 from kivy.properties import ObjectProperty
+from kivy.uix.screenmanager import Screen # tela
+from kivy.lang import Builder as bd # cria o metódo construir 
+from kivy.core.window import Window as tamaño_pantalla # regula o tamanho da janela
 
 from kivymd.uix.dialog import *
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.list import OneLineIconListItem
-from kivymd.app import MDApp as md_application # cria a janela
 from kivymd.uix.boxlayout import MDBoxLayout as Box
+from kivymd.app import MDApp as md_application # cria a janela
 from kivymd.uix.list import ThreeLineAvatarIconListItem as three_Line_List
 from kivymd.uix.list import ThreeLineListItem as three_Line_List2
 
@@ -35,7 +35,6 @@ class dataBase():
         #Cria tabela:
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS password(
-                cod INTEGER PRIMARY KEY,
                 senha CHAR(40) NOT NULL,
                 user CHAR(40),
                 site CHAR(40),
@@ -56,6 +55,20 @@ class dataBase():
 
         self.desconecta_banco_d_dados()
 
+    def list_insert(self):
+        self.conecta_banco_d_dados()
+        
+        self.cursor.execute(""" SELECT * FROM password;""")
+        lista = self.cursor.fetchall()
+
+        test = ''
+        for record in lista:
+            test = f'{test}nn{record}'
+        
+        self.desconecta_banco_d_dados()
+        test = test.replace("None", "").replace(")","").replace("(","").replace("'", "").rstrip('').lstrip("").replace("nn","\n \n")
+        print(test)
+   
 class CustomOneLineIconListItem(OneLineIconListItem):
     icon = StringProperty()
 
@@ -105,7 +118,7 @@ class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
         data_actual = data.now()
         data_actual = data_actual.strftime("%d/%m/%Y")
 
-        convertText = f'{self.text},{self.secondary_text},{self.tertiary_text}, {data_actual}'
+        convertText = f'{self.text},{self.secondary_text},{self.tertiary_text},{data_actual}'
         convertText = convertText.split(',')
 
         list_key = ['text1','text2','text3','data']

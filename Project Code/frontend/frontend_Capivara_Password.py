@@ -162,7 +162,7 @@ box = '''
                     text: "Your saved passwords:".title()
                     font_size: 19
                     size_hint_x: 0.9
-                    pos_hint: {'center_x':0.46, 'center_y':0.99}
+                    pos_hint: {'center_x':0.46, 'center_y':0.95}
                     width:200
                     theme_text_color: "Custom"
                     text_color: app.theme_cls.primary_color
@@ -172,7 +172,7 @@ box = '''
                     font_size: 22
                     size_hint_x: 0.95
                     hint_text: str('Search:')
-                    pos_hint: {'center_x':0.5, 'center_y':0.81}
+                    pos_hint: {'center_x':0.5, 'center_y':0.773}
                     #icon_right: 'magnify'
                     #icon_right_color: app.theme_cls.primary_color
                     width:200
@@ -182,11 +182,29 @@ box = '''
 
                 MDRoundFlatIconButton:
                     icon: "magnify"
-                    text: "Search"
-                    pos_hint: {'center_x':0.87, 'center_y':0.7} 
+                    text: "Let's Search"
+                    pos_hint: {'center_x':0.766, 'center_y':0.65} 
                     theme_text_color: "Custom"
                     text_color: app.theme_cls.primary_color
                     line_color: 0, 0, 0, 0
+
+                MDCard:
+                
+                    size_hint_y: None
+                    height: "450dp"
+                    padding: "3dp"
+                    radius: 6.5
+                    elevation: 7
+                    pos_hint: {'center_x':0.5, 'center_y':-0.29}
+                    md_bg_color: 0.35, 0.55, 0.65, 1
+
+                    ScrollView:
+
+                        do_scroll_x: False
+                        do_scroll_y: True
+
+                        MDList:
+                            id: container2
 
 <CustomOneLineIconListItem>:
     IconLeftWidget:
@@ -203,6 +221,7 @@ box = '''
 <ContentNavigationDrawer>
 
     BoxLayout:
+        orientation: 'vertical'
 
         ScrollView:
             do_scroll_x: False
@@ -221,7 +240,6 @@ box = '''
                         on_release:
                             root.nav_drawer.set_state("close")
                             root.screen_manager.current = "tela1"
-
                 OneLineAvatarIconListItem:
                     text: 'Saved Password'
                     on_release:
