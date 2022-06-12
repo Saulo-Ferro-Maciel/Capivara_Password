@@ -1,3 +1,4 @@
+import base64
 from box2 import*
 import sqlite3 as sq3
 from random import randint as ran
@@ -151,8 +152,14 @@ class MDThreeLineListItem1(three_Line_List2):
 class ContentNavigationDrawer(Box):
     screen_manager = ObjectProperty()
     nav_drawer = ObjectProperty()
-
+    
 class NavigationDrawer(Box):
+    pass
+
+class Tela4(Screen):
+    pass
+
+class Tela3(Screen):
     pass
 
 class Tela2(Screen):

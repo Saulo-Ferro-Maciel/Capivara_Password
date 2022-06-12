@@ -206,6 +206,12 @@ box = '''
                         MDList:
                             id: container2
 
+<Tela3>: 
+    name: 'tela3'
+
+<Tela4>:
+    name: 'tela4'
+
 <CustomOneLineIconListItem>:
     IconLeftWidget:
         icon: root.icon
@@ -223,12 +229,19 @@ box = '''
     BoxLayout:
         orientation: 'vertical'
 
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
+
+        Image:
+            id: image
+            source: 'test.png'
+            #allow_stretch: True
+            size_hint: 0.51, 0.51
+            pos_hint: {'center_x':0.5, 'center_y':0.85}
+            radius: [36, 36, 36, 36, ]
+
+        FloatLayout:
 
             MDList:
-                pos_hint: {'center_x':0.46, 'center_y':0.5}
+                pos_hint: {'center_x':0.5, 'center_y':0.8}
 
                 OneLineAvatarIconListItem:
                     text: 'Generate Password'
@@ -250,7 +263,26 @@ box = '''
                         on_release:
                             root.nav_drawer.set_state("close")
                             root.screen_manager.current = "tela2"
-
+                OneLineAvatarIconListItem:
+                    text: 'settings'.title()
+                    on_release:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "tela3"
+                    IconLeftWidget:
+                        icon: "cog"
+                        on_release:
+                            root.nav_drawer.set_state("close")
+                            root.screen_manager.current = "tela4"
+        
+            MDTextButton:
+                text: 'Alpha Version 0.1.0'
+                pos_hint: {'center_x':0.5, 'center_y':0.095}
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = 'tela4'
+            
 Screen:   
     BoxLayout:
 
@@ -274,6 +306,8 @@ Screen:
 
                 Tela1:
                 Tela2:
+                Tela3:
+                Tela4:
 
             MDNavigationDrawer:
                 id: nav_drawer
