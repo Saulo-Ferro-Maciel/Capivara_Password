@@ -1,4 +1,3 @@
-import base64
 from box2 import*
 import sqlite3 as sq3
 from random import randint as ran
@@ -9,16 +8,18 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import Screen # tela
 from kivy.lang import Builder as bd # cria o metódo construir 
 from kivy.core.window import Window as tamaño_pantalla # regula o tamanho da janela
+from kivy.uix.screenmanager import ScreenManager as screenManager
 
 from kivymd.uix.dialog import *
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.list import OneLineIconListItem
+from kivymd.uix.toolbar import MDToolbar as Bar
 from kivymd.uix.boxlayout import MDBoxLayout as Box
 from kivymd.app import MDApp as md_application # cria a janela
 from kivymd.uix.list import ThreeLineAvatarIconListItem as three_Line_List
 from kivymd.uix.list import ThreeLineListItem as three_Line_List2
 
-tamaño_pantalla.size = tamaño_patalla
+tamaño_pantalla.size = Tamaño_patalla
 tamaño_pantalla.minimum_width = 400
 tamaño_pantalla.minimum_height = 400
 
@@ -156,6 +157,12 @@ class ContentNavigationDrawer(Box):
 class NavigationDrawer(Box):
     pass
 
+class ToolBar(Bar):
+    pass
+
+class ScreenManager(screenManager):
+    pass
+
 class Tela4(Screen):
     pass
 
@@ -163,10 +170,24 @@ class Tela3(Screen):
     pass
 
 class Tela2(Screen):
-    pass
+
+    def check_3(self, checkbox, value):
+        if value:
+            self.ids.card2.md_bg_color = [0.169,0.169,0.169, 1]
+           
+        else:
+           self.ids.card2.md_bg_color = [0.35, 0.55, 0.65, 1]
 
 class Tela1(Screen):
     my_dialog = None
+    t = None
+
+    def check_2(self, checkbox, value):
+        if value:
+            self.ids.card1.md_bg_color = [0.169,0.169,0.169, 1]
+            
+        else:
+           self.ids.card1.md_bg_color = [0.35, 0.55, 0.65, 1]
           
     def openCard(self):
 
@@ -474,8 +495,22 @@ class App_principal(md_application):
         App_principal.title = "Capivara_Password"
         self.theme_cls.primary_palette = "BlueGray"
         self.theme_cls.primary_hue = '500'
+        self.theme_cls.accent_palette = "LightGreen"
         app_layout= bd.load_string(box)
         return app_layout
+
+
+    def check_1(self, checkbox, value):
+        if value:
+            self.theme_cls.theme_style = 'Dark'
+            self.theme_cls.primary_palette = 'BlueGray'
+            self.theme_cls.primary_hue = '50'
+            
+        else:
+            self.theme_cls.theme_style = 'Light'
+            self.theme_cls.primary_palette = "BlueGray"
+            self.theme_cls.primary_hue = '500'
+            
      
 if __name__ == '__main__':
     project = App_principal()
