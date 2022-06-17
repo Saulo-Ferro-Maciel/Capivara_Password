@@ -24,6 +24,7 @@ box = '''
             FloatLayout:
 
                 MDLabel:
+                    id: text_1
                     text: "1st step:".title()
                     font_size: 21
                     size_hint_x: 0.9
@@ -93,6 +94,7 @@ box = '''
                     ripple_duration_in_slow: 2
 
                 MDLabel:
+                    id: label
                     text: "-or-".upper()
                     halign: "center"
                     size_hint_x: 0.9
@@ -123,6 +125,7 @@ box = '''
                     ripple_duration_in_slow: 2
                 
                 MDLabel:
+                    id: text_2
                     text: "2st step:".title()
                     font_size: 21
                     size_hint_x: 0.9
@@ -172,6 +175,7 @@ box = '''
             FloatLayout:
 
                 MDLabel:
+                    id: title
                     text: "Your saved passwords:".title()
                     font_size: 19
                     size_hint_x: 0.9
@@ -194,13 +198,26 @@ box = '''
                     multiline: False
 
                 MDRoundFlatIconButton:
+                    id: button
                     icon: "magnify"
                     text: "Let's Search"
+<<<<<<< HEAD
+                    font_size: 15.5
+=======
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
                     pos_hint: {'center_x':0.766, 'center_y':0.55} 
                     theme_text_color: "Custom"
                     text_color: app.theme_cls.primary_color
                     icon_color: app.theme_cls.primary_color
                     line_color: 0, 0, 0, 0
+                    on_release:
+                        root.test()
+
+                    ripple_rad_default: 0.1
+                    ripple_scale: .3
+                    ripple_duration_in_fast: .1
+                    ripple_duration_out: .0
+                    ripple_duration_in_slow: 2
 
                     ripple_rad_default: 200
                     ripple_scale: .3
@@ -234,6 +251,18 @@ box = '''
         orinetation: 'vertical'
 
         FloatLayout:
+<<<<<<< HEAD
+
+            MDTextButton:
+                text: 'Alpha Version 0.1.0'
+                pos_hint: {'center_x':0.5, 'center_y':0.065}
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'tela4'
+=======
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
         
             Image:
                 id: image
@@ -246,10 +275,22 @@ box = '''
 
             MDList:
                 pos_hint: {'center_x':0.5, 'center_y':0.65}
+<<<<<<< HEAD
+
+               
+                OneLineAvatarIconListItem:
+                    pos_hint: {'center_x':0.5, 'center_y':0.99}
+
+                    ripple_scale: .0
+                    
+                    MDLabel:
+                        id: text_1
+=======
                 OneLineAvatarIconListItem:
                     pos_hint: {'center_x':0.5, 'center_y':0.99}
 
                     MDLabel:
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
                         text: "Dark Mode:".title().center(20)
                         font_size: 15
                         size_hint_x: 0.9
@@ -267,17 +308,73 @@ box = '''
                             root.manager.get_screen("tela1").check_2(*args)
                             root.manager.get_screen('tela2').check_3(*args)
                             
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
                         ripple_rad_default: 0.70
                         ripple_scale: .3
                         ripple_duration_in_fast: .1
                         ripple_duration_out: .0
                         ripple_duration_in_slow: 2
 
+<<<<<<< HEAD
+                OneLineAvatarIconListItem:
+                    pos_hint: {'center_x':0.5, 'center_y':0.99}
+
+                    ripple_scale: .0
+
+                    MDLabel:
+                        id: text_2
+                        text: "Font size:".title().center(20)
+                        font_size: 15
+                        size_hint_x: 0.9
+                        pos_hint: {'center_x':0.65, 'center_y':0.5}
+                        width:200
+                        theme_text_color: "Custom"
+                        text_color: app.theme_cls.primary_color
+
+                    MDSlider:
+                        id: slider
+                        pos_hint: {'center_x':0.75, 'center_y':0.5}
+                        size_hint: .3, .1
+
+                        min: 15
+                        max: 22
+                        value: 17
+                        on_active:
+                            root.font_size(slider.value)
+                            root.manager.get_screen('tela2').font_size(slider.value)
+                            root.manager.get_screen('tela1').font_size(slider.value)
+
+                        ripple_rad_default: 0.1
+                        ripple_scale: .0
+                        ripple_duration_in_fast: .1
+                        ripple_duration_out: .0
+                        ripple_duration_in_slow: 2
+
+=======
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
 
 <Tela4>:
     name: 'tela4'
 
+<<<<<<< HEAD
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+
+            Image:
+                id: image
+                source: 'test3.png'
+                #allow_stretch: True
+                size_hint: .3, .3
+                pos_hint: {'center_x':0.5, 'center_y':0.83}
+                radius: [35, 35, 35, 35, 35]
+
+=======
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
 <ToolBar>:
 
     id:bar2
@@ -286,7 +383,11 @@ box = '''
     pos_hint: {"top": 1}
     elevation:20
     opacity: .99
+<<<<<<< HEAD
+    specific_text_color: [0.95,0.95,0.95, 1]
+=======
     specific_text_color: [0.94,0.95,0.84, 1]
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
     
 
 <CustomOneLineIconListItem>:
@@ -300,6 +401,8 @@ box = '''
         icon: 'plus-box-multiple'
         on_press:
             root.buttonTest()
+
+<lista_colheita_database>:
 
 <ContentNavigationDrawer>
 

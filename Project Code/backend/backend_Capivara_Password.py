@@ -58,19 +58,52 @@ class dataBase():
         self.desconecta_banco_d_dados()
 
     def list_insert(self):
-        self.conecta_banco_d_dados()
-        
-        self.cursor.execute(""" SELECT * FROM password;""")
-        lista = self.cursor.fetchall()
 
-        test = ''
-        for record in lista:
-            test = f'{test}nn{record}'
-        
+        lista_final = list()
+
+        self.conecta_banco_d_dados()
+
+        lista = self.cursor.execute(""" SELECT 
+                senha,
+                user,
+                site,
+                data
+            FROM password ;""")
+      
+        for i in lista:
+            s = ','.join(i)
+            s = s.split(',')
+            print(s, type(s))
+            lista_final.append(s)
+
         self.desconecta_banco_d_dados()
-        test = test.replace("None", "").replace(")","").replace("(","").replace("'", "").rstrip('').lstrip("").replace("nn","\n \n")
-        print(test)
+        print(lista_final)
    
+class lista_colheita_database(three_Line_List):
+    text = StringProperty("")
+    secondary_text = StringProperty("")
+    tertiary_text = StringProperty("")
+    my_dialog = None
+    dictionary_Text = None
+
+    def __int__(self):
+        self.conecta_banco_d_dados()
+
+        lista = self.cursor.execute(""" SELECT 
+                senha,
+                user,
+                site,
+                data
+            FROM password ;""")
+        
+        for i in lista:
+            self.text = i
+
+        self.desconecta_banco_d_dados()
+        """self.text"""
+        self.secondary_text
+        self.tertiary_text
+  
 class CustomOneLineIconListItem(OneLineIconListItem):
     icon = StringProperty()
 
@@ -103,7 +136,7 @@ class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
                     theme_text_color= "Custom",
                     text_color= [0, 25, 0, 1],
                     pos_hint= {'center_x':1, 'center_y':.5},
-                    on_release = self.saveButton),
+                    on_release = self.saveButton, ),
                 MDIconButton(
                     icon= "close-box-multiple-outline",
                     size_hint_y = 0.8,
@@ -167,9 +200,40 @@ class Tela4(Screen):
     pass
 
 class Tela3(Screen):
-    pass
 
+<<<<<<< HEAD
+    def font_size(self, value):
+
+        self.ids.text_1.font_size = value
+        self.ids.text_2.font_size = value
+        
+    pass
+=======
 class Tela2(Screen):
+
+    def check_3(self, checkbox, value):
+        if value:
+            self.ids.card2.md_bg_color = [0.169,0.169,0.169, 1]
+           
+        else:
+           self.ids.card2.md_bg_color = [0.35, 0.55, 0.65, 1]
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
+
+class Tela2(Screen, dataBase):
+
+    def test(self):
+        self.list_insert()
+
+    def font_size(self, value):
+
+        b = self.ids.title.font_size = value
+        self.ids.search.font_size = value
+        a = self.ids.button.font_size = value - 3
+
+        if b <= 15:
+            b = 14,3
+        elif a <= 15:
+            a = 14,3
 
     def check_3(self, checkbox, value):
         if value:
@@ -182,6 +246,19 @@ class Tela1(Screen):
     my_dialog = None
     t = None
 
+<<<<<<< HEAD
+    def font_size(self, value):
+
+        b = self.ids.text_1.font_size = value
+        a =self.ids.text_2.font_size = value 
+
+        if b <= 15:
+            b = 14,3
+        elif a <= 15:
+            a = 14,3
+
+=======
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
     def check_2(self, checkbox, value):
         if value:
             self.ids.card1.md_bg_color = [0.169,0.169,0.169, 1]
@@ -499,7 +576,10 @@ class App_principal(md_application):
         app_layout= bd.load_string(box)
         return app_layout
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
     def check_1(self, checkbox, value):
         if value:
             self.theme_cls.theme_style = 'Dark'
@@ -510,7 +590,11 @@ class App_principal(md_application):
             self.theme_cls.theme_style = 'Light'
             self.theme_cls.primary_palette = "BlueGray"
             self.theme_cls.primary_hue = '500'
+<<<<<<< HEAD
+           
+=======
             
+>>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
      
 if __name__ == '__main__':
     project = App_principal()
