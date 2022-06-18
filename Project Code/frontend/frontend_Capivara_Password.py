@@ -186,7 +186,6 @@ box = '''
                     
                 MDTextField:
                     id: search
-                    font_size: 22
                     size_hint_x: 0.95
                     hint_text: str('Search:')
                     pos_hint: {'center_x':0.5, 'center_y':0.673}
@@ -201,10 +200,7 @@ box = '''
                     id: button
                     icon: "magnify"
                     text: "Let's Search"
-<<<<<<< HEAD
                     font_size: 15.5
-=======
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
                     pos_hint: {'center_x':0.766, 'center_y':0.55} 
                     theme_text_color: "Custom"
                     text_color: app.theme_cls.primary_color
@@ -214,12 +210,6 @@ box = '''
                         root.test()
 
                     ripple_rad_default: 0.1
-                    ripple_scale: .3
-                    ripple_duration_in_fast: .1
-                    ripple_duration_out: .0
-                    ripple_duration_in_slow: 2
-
-                    ripple_rad_default: 200
                     ripple_scale: .3
                     ripple_duration_in_fast: .1
                     ripple_duration_out: .0
@@ -251,18 +241,15 @@ box = '''
         orinetation: 'vertical'
 
         FloatLayout:
-<<<<<<< HEAD
 
             MDTextButton:
-                text: 'Alpha Version 0.1.0'
+                text: 'Alpha Version 0.3.0'
                 pos_hint: {'center_x':0.5, 'center_y':0.065}
                 theme_text_color: "Custom"
                 text_color: app.theme_cls.primary_color
                 on_release:
                     root.manager.transition.direction = 'right'
                     root.manager.current = 'tela4'
-=======
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
         
             Image:
                 id: image
@@ -275,7 +262,6 @@ box = '''
 
             MDList:
                 pos_hint: {'center_x':0.5, 'center_y':0.65}
-<<<<<<< HEAD
 
                
                 OneLineAvatarIconListItem:
@@ -285,12 +271,6 @@ box = '''
                     
                     MDLabel:
                         id: text_1
-=======
-                OneLineAvatarIconListItem:
-                    pos_hint: {'center_x':0.5, 'center_y':0.99}
-
-                    MDLabel:
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
                         text: "Dark Mode:".title().center(20)
                         font_size: 15
                         size_hint_x: 0.9
@@ -308,17 +288,12 @@ box = '''
                             root.manager.get_screen("tela1").check_2(*args)
                             root.manager.get_screen('tela2').check_3(*args)
                             
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
                         ripple_rad_default: 0.70
                         ripple_scale: .3
                         ripple_duration_in_fast: .1
                         ripple_duration_out: .0
                         ripple_duration_in_slow: 2
 
-<<<<<<< HEAD
                 OneLineAvatarIconListItem:
                     pos_hint: {'center_x':0.5, 'center_y':0.99}
 
@@ -353,13 +328,10 @@ box = '''
                         ripple_duration_out: .0
                         ripple_duration_in_slow: 2
 
-=======
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
 
 <Tela4>:
     name: 'tela4'
 
-<<<<<<< HEAD
     BoxLayout:
         orientation: 'vertical'
 
@@ -373,8 +345,6 @@ box = '''
                 pos_hint: {'center_x':0.5, 'center_y':0.83}
                 radius: [35, 35, 35, 35, 35]
 
-=======
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
 <ToolBar>:
 
     id:bar2
@@ -383,11 +353,7 @@ box = '''
     pos_hint: {"top": 1}
     elevation:20
     opacity: .99
-<<<<<<< HEAD
     specific_text_color: [0.95,0.95,0.95, 1]
-=======
-    specific_text_color: [0.94,0.95,0.84, 1]
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
     
 
 <CustomOneLineIconListItem>:
@@ -404,6 +370,16 @@ box = '''
 
 <lista_colheita_database>:
 
+    ripple_rad_default: 0.70
+    ripple_scale: .3
+    ripple_duration_in_fast: .1
+    ripple_duration_out: .0
+    ripple_duration_in_slow: 2
+
+    IconLeftWidget:
+        icon: root.icon
+
+
 <ContentNavigationDrawer>
 
     BoxLayout:
@@ -412,7 +388,7 @@ box = '''
         FloatLayout:
 
             MDTextButton:
-                text: 'Alpha Version 0.1.0'
+                text: 'Alpha Version 0.3.0'
                 pos_hint: {'center_x':0.5, 'center_y':0.065}
                 theme_text_color: "Custom"
                 text_color: app.theme_cls.primary_color

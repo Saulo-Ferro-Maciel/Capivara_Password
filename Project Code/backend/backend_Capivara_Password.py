@@ -1,3 +1,4 @@
+from cgitb import text
 from box2 import*
 import sqlite3 as sq3
 from random import randint as ran
@@ -11,6 +12,7 @@ from kivy.core.window import Window as tamaño_pantalla # regula o tamanho da ja
 from kivy.uix.screenmanager import ScreenManager as screenManager
 
 from kivymd.uix.dialog import *
+from kivymd.uix.label import Label
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.uix.toolbar import MDToolbar as Bar
@@ -72,37 +74,32 @@ class dataBase():
       
         for i in lista:
             s = ','.join(i)
-            s = s.split(',')
-            print(s, type(s))
+            s = f'{s}'
             lista_final.append(s)
 
         self.desconecta_banco_d_dados()
-        print(lista_final)
+        return lista_final
    
 class lista_colheita_database(three_Line_List):
     text = StringProperty("")
     secondary_text = StringProperty("")
     tertiary_text = StringProperty("")
-    my_dialog = None
-    dictionary_Text = None
+    icon = StringProperty("")
 
     def __int__(self):
-        self.conecta_banco_d_dados()
-
-        lista = self.cursor.execute(""" SELECT 
-                senha,
-                user,
-                site,
-                data
-            FROM password ;""")
         
-        for i in lista:
-            self.text = i
-
-        self.desconecta_banco_d_dados()
-        """self.text"""
+        self.text
         self.secondary_text
         self.tertiary_text
+        self.icon
+
+    def data(self, text1, secondaryText, tertiaryText, label, icon1):
+        self.text = text1
+        self.secondary_text = secondaryText
+        self.tertiary_text = tertiaryText
+        self.icon = icon1
+
+        self.add_widget(Label(text=label, font_size = 14.5, pos_hint= {'center_x':0.85, 'center_y':0.65}))
   
 class CustomOneLineIconListItem(OneLineIconListItem):
     icon = StringProperty()
@@ -159,7 +156,6 @@ class MDThreeLineAvatarIconListItem1(three_Line_List, dataBase):
         list_key = ['text1','text2','text3','data']
         self.dictionary_Text = dict(zip(list_key,convertText))
         
-        print(self.dictionary_Text)
         self.monta_banco_em_tabela()
 
         self.passwordAdd(self.dictionary_Text['text1'],self.dictionary_Text['text2'], self.dictionary_Text['text3'], self.dictionary_Text['data'] )
@@ -201,28 +197,76 @@ class Tela4(Screen):
 
 class Tela3(Screen):
 
-<<<<<<< HEAD
     def font_size(self, value):
 
         self.ids.text_1.font_size = value
         self.ids.text_2.font_size = value
-        
-    pass
-=======
-class Tela2(Screen):
-
-    def check_3(self, checkbox, value):
-        if value:
-            self.ids.card2.md_bg_color = [0.169,0.169,0.169, 1]
-           
-        else:
-           self.ids.card2.md_bg_color = [0.35, 0.55, 0.65, 1]
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
 
 class Tela2(Screen, dataBase):
 
     def test(self):
-        self.list_insert()
+        a = None
+        
+        b = self.ids.container2
+        b.clear_widgets()
+
+        c = self.ids.search
+        d = c.text
+
+        if d == '':
+
+            a = self.list_insert()
+
+            for i in a:
+                
+                i = i.split(',')
+                text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
+
+                if icon1 == 'Site not informed':
+                    icon1 ='wifi-strength-4'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1 == 'paxtu':
+                    icon1 ='fleur-de-lis'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1 == 'paxtuescoteiros':
+                    icon1 ='fleur-de-lis'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1 == 'escout':
+                    icon1 ='fleur-de-lis'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1 == 'escoteiros':
+                    icon1 ='fleur-de-lis'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1 in 'office 360':
+                    icon1 ='microsoft-office'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1 == 'microsoft':
+                    icon1 ='microsoft-windows'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['nubank','will','santander', 'banco do brasil', 'itaú', 'itau','next', 'bradesco']:
+                    icon1 ='bank'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                else:
+
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
 
     def font_size(self, value):
 
@@ -246,7 +290,6 @@ class Tela1(Screen):
     my_dialog = None
     t = None
 
-<<<<<<< HEAD
     def font_size(self, value):
 
         b = self.ids.text_1.font_size = value
@@ -257,8 +300,6 @@ class Tela1(Screen):
         elif a <= 15:
             a = 14,3
 
-=======
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
     def check_2(self, checkbox, value):
         if value:
             self.ids.card1.md_bg_color = [0.169,0.169,0.169, 1]
@@ -572,14 +613,9 @@ class App_principal(md_application):
         App_principal.title = "Capivara_Password"
         self.theme_cls.primary_palette = "BlueGray"
         self.theme_cls.primary_hue = '500'
-        self.theme_cls.accent_palette = "LightGreen"
         app_layout= bd.load_string(box)
         return app_layout
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
     def check_1(self, checkbox, value):
         if value:
             self.theme_cls.theme_style = 'Dark'
@@ -590,11 +626,7 @@ class App_principal(md_application):
             self.theme_cls.theme_style = 'Light'
             self.theme_cls.primary_palette = "BlueGray"
             self.theme_cls.primary_hue = '500'
-<<<<<<< HEAD
            
-=======
-            
->>>>>>> 6e3372c9e1bacc036268ced1fb0f9e20e56ab810
      
 if __name__ == '__main__':
     project = App_principal()
