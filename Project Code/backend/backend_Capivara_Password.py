@@ -79,7 +79,49 @@ class dataBase():
 
         self.desconecta_banco_d_dados()
         return lista_final
+
+    def list_insert2(self, d):
+
+        lista_final = list()
+
+        self.conecta_banco_d_dados()
+
+        lista = self.cursor.execute(""" SELECT 
+                senha,
+                user,
+                site,
+                data
+            FROM password WHERE data LIKE '%s'; """% d)
+        
+        for i in lista:
+            s = ','.join(i)
+            s = f'{s}'
+            lista_final.append(s)
+
+        self.desconecta_banco_d_dados()
+        return lista_final
    
+    def list_insert3(self, d):
+
+        lista_final = list()
+
+        self.conecta_banco_d_dados()
+
+        lista = self.cursor.execute(""" SELECT 
+                senha,
+                user,
+                site,
+                data
+            FROM password WHERE site LIKE '%s'; """% d)
+        
+        for i in lista:
+            s = ','.join(i)
+            s = f'{s}'
+            lista_final.append(s)
+
+        self.desconecta_banco_d_dados()
+        return lista_final
+
 class lista_colheita_database(three_Line_List):
     text = StringProperty("")
     secondary_text = StringProperty("")
@@ -213,60 +255,107 @@ class Tela2(Screen, dataBase):
         c = self.ids.search
         d = c.text
 
+        a1, a2, a3 = self.list_insert(), self.list_insert2(d = f'{d.rstrip("").lstrip("")}%'),self.list_insert3(d = f'{d.rstrip("").lstrip("")}%')
+
         if d == '':
 
-            a = self.list_insert()
+            a = a1
 
             for i in a:
                 
                 i = i.split(',')
                 text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
 
-                if icon1 == 'Site not informed':
-                    icon1 ='wifi-strength-4'
+                if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
+                    icon1 ='file-cog-outline'
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1 == 'paxtu':
+                elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
                     icon1 ='fleur-de-lis'
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1 == 'paxtuescoteiros':
-                    icon1 ='fleur-de-lis'
-                    teste = lista_colheita_database()
-                    b.add_widget(teste)
-                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1 == 'escout':
-                    icon1 ='fleur-de-lis'
-                    teste = lista_colheita_database()
-                    b.add_widget(teste)
-                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1 == 'escoteiros':
-                    icon1 ='fleur-de-lis'
-                    teste = lista_colheita_database()
-                    b.add_widget(teste)
-                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1 in 'office 360':
-                    icon1 ='microsoft-office'
-                    teste = lista_colheita_database()
-                    b.add_widget(teste)
-                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1 == 'microsoft':
+                elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
                     icon1 ='microsoft-windows'
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1.lower() in ['nubank','will','santander', 'banco do brasil', 'itaú', 'itau','next', 'bradesco']:
+                elif icon1.lower() in ['nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
                     icon1 ='bank'
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
                 else:
-
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
+        else:
+            if d.isnumeric():
+                a = a2
+
+                for i in a:
+                    
+                    i = i.split(',')
+                    text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
+
+                    if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
+                        icon1 ='file-cog-outline'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
+                        icon1 ='fleur-de-lis'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
+                        icon1 ='microsoft-windows'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    elif icon1.lower() in ['nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
+                        icon1 ='bank'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    else:
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+            else:
+                
+                a = a3
+
+                for i in a:
+                    
+                    i = i.split(',')
+                    text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
+
+                    if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
+                        icon1 ='file-cog-outline'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
+                        icon1 ='fleur-de-lis'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
+                        icon1 ='microsoft-windows'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    elif icon1.lower() in ['nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
+                        icon1 ='bank'
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                    else:
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
 
     def font_size(self, value):
 

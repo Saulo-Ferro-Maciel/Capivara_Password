@@ -192,7 +192,7 @@ box = '''
                     #icon_right: 'magnify'
                     #icon_right_color: app.theme_cls.primary_color
                     width:200
-                    helper_text: str('find your passwords').center(5).title()
+                    helper_text: str('find your passwords through the website or dates').center(5).title()
                     helper_text_mode: "on_focus"
                     multiline: False
 
@@ -201,7 +201,7 @@ box = '''
                     icon: "magnify"
                     text: "Let's Search"
                     font_size: 15.5
-                    pos_hint: {'center_x':0.766, 'center_y':0.55} 
+                    pos_hint: {'center_x':0.766, 'center_y':0.523} 
                     theme_text_color: "Custom"
                     text_color: app.theme_cls.primary_color
                     icon_color: app.theme_cls.primary_color
@@ -234,6 +234,8 @@ box = '''
                         MDList:
                             id: container2
 
+                            lista_colheita_database:
+
 <Tela3>: 
     name: 'tela3'
 
@@ -243,7 +245,7 @@ box = '''
         FloatLayout:
 
             MDTextButton:
-                text: 'Alpha Version 0.3.0'
+                text: 'Alpha Version 0.5.0'
                 pos_hint: {'center_x':0.5, 'center_y':0.065}
                 theme_text_color: "Custom"
                 text_color: app.theme_cls.primary_color
@@ -388,7 +390,7 @@ box = '''
         FloatLayout:
 
             MDTextButton:
-                text: 'Alpha Version 0.3.0'
+                text: 'Alpha Version 0.5.0'
                 pos_hint: {'center_x':0.5, 'center_y':0.065}
                 theme_text_color: "Custom"
                 text_color: app.theme_cls.primary_color
