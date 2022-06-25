@@ -345,7 +345,7 @@ box = '''
                 theme_icon_color: "Custom"
                 icon_color: app.theme_cls.primary_color
 
-                pos_hint: {'center_x':0.5, 'center_y':0.2}
+                pos_hint: {'center_x':0.5, 'center_y':0.23}
                 ripple_rad_default: 0.70
                 ripple_scale: .3
                 ripple_duration_in_fast: .1
@@ -361,13 +361,29 @@ box = '''
                 theme_icon_color: "Custom"
                 icon_color: app.theme_cls.primary_color
 
-                pos_hint: {'center_x':0.5, 'center_y':0.122}
+                pos_hint: {'center_x':0.5, 'center_y':0.155}
                 ripple_rad_default: 0.70
                 ripple_scale: .3
                 ripple_duration_in_fast: .1
                 ripple_duration_out: .01
                 ripple_duration_in_slow: 2
                 on_press: root.test()
+            
+            MDRectangleFlatIconButton:
+                icon: "instagram"
+                text: "developer contact".title()
+                text_color: app.theme_cls.primary_color
+                line_color: 1, 1, 1, 1
+                theme_icon_color: "Custom"
+                icon_color: app.theme_cls.primary_color
+
+                pos_hint: {'center_x':0.5, 'center_y':0.08}
+                ripple_rad_default: 0.70
+                ripple_scale: .3
+                ripple_duration_in_fast: .1
+                ripple_duration_out: .01
+                ripple_duration_in_slow: 2
+                on_press: root.test3()
             
             Image:
                 id: image

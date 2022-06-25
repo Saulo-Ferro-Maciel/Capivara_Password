@@ -268,6 +268,10 @@ class Tela4(Screen):
         web_page = 'https://github.com/Saulo-Ferro-Maciel/Capivara_Password'
         web.open(web_page)
 
+    def test3(self):
+        web_page = 'https://www.instagram.com/saulo_fehciel/'
+        web.open(web_page)
+
 class Tela3(Screen):
 
     def font_size(self, value):
