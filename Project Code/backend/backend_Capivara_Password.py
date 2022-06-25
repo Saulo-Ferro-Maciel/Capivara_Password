@@ -1,6 +1,6 @@
-from cgitb import text
 from box2 import*
 import sqlite3 as sq3
+import webbrowser as web
 from random import randint as ran
 from datetime import datetime as data
 
@@ -63,6 +63,7 @@ class dataBase():
 
         lista_final = list()
 
+        self.monta_banco_em_tabela()
         self.conecta_banco_d_dados()
 
         lista = self.cursor.execute(""" SELECT 
@@ -84,6 +85,7 @@ class dataBase():
 
         lista_final = list()
 
+        self.monta_banco_em_tabela()
         self.conecta_banco_d_dados()
 
         lista = self.cursor.execute(""" SELECT 
@@ -91,7 +93,7 @@ class dataBase():
                 user,
                 site,
                 data
-            FROM password WHERE data LIKE '%s'; """% d)
+            FROM password WHERE data LIKE '%s' """%d)
         
         for i in lista:
             s = ','.join(i)
@@ -105,6 +107,7 @@ class dataBase():
 
         lista_final = list()
 
+        self.monta_banco_em_tabela()
         self.conecta_banco_d_dados()
 
         lista = self.cursor.execute(""" SELECT 
@@ -113,6 +116,28 @@ class dataBase():
                 site,
                 data
             FROM password WHERE site LIKE '%s'; """% d)
+        
+        for i in lista:
+            s = ','.join(i)
+            s = f'{s}'
+            lista_final.append(s)
+
+        self.desconecta_banco_d_dados()
+        return lista_final
+
+    def list_insert4(self, d):
+
+        lista_final = list()
+
+        self.monta_banco_em_tabela()
+        self.conecta_banco_d_dados()
+
+        lista = self.cursor.execute(""" SELECT 
+                senha,
+                user,
+                site,
+                data
+            FROM password WHERE user LIKE '%s'; """% d)
         
         for i in lista:
             s = ','.join(i)
@@ -235,7 +260,13 @@ class ScreenManager(screenManager):
     pass
 
 class Tela4(Screen):
-    pass
+    def test(self):
+        web_page = 'https://www.youtube.com/watch?v=TL6i_MWZZqY&list=PLUvyOEX2BqKdtBW_rWnEgr2eJSCkKGml4'
+        web.open(web_page)
+
+    def test2(self):
+        web_page = 'https://github.com/Saulo-Ferro-Maciel/Capivara_Password'
+        web.open(web_page)
 
 class Tela3(Screen):
 
@@ -245,7 +276,7 @@ class Tela3(Screen):
         self.ids.text_2.font_size = value
 
 class Tela2(Screen, dataBase):
-
+   
     def test(self):
         a = None
         
@@ -255,10 +286,9 @@ class Tela2(Screen, dataBase):
         c = self.ids.search
         d = c.text
 
-        a1, a2, a3 = self.list_insert(), self.list_insert2(d = f'{d.rstrip("").lstrip("")}%'),self.list_insert3(d = f'{d.rstrip("").lstrip("")}%')
+        a1,a2,a3,a4 = self.list_insert(),self.list_insert2(d = f'{d.rstrip("").lstrip("")}%'),self.list_insert3(d = f'{d.rstrip("").lstrip("")}%'),self.list_insert4(d = f'{d.rstrip("").lstrip("")}%')
 
         if d == '':
-
             a = a1
 
             for i in a:
@@ -281,81 +311,133 @@ class Tela2(Screen, dataBase):
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                elif icon1.lower() in ['nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
+                elif icon1.lower() in ['meu banco','my bank','bank','citbank','caixa','pan','inter','c6bank','nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
                     icon1 ='bank'
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                else:
+                elif icon1.lower() in ['escola','ifma','ceuma','ufma','.edu','edu','educação','education','educacao','uema','undb','professor','aluno','alunos','professores','usp','ufsp','ufmg','ufrj','faculdade','laboro','pitagoras']:
+                    icon1 = 'school-outline'
                     teste = lista_colheita_database()
                     b.add_widget(teste)
                     teste.data(text1, secondaryText, tertiaryText, label, icon1)
-        else:
-            if d.isnumeric():
-                a = a2
+                else:
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
 
-                for i in a:
-                    
-                    i = i.split(',')
-                    text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
-
-                    if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
-                        icon1 ='file-cog-outline'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
-                        icon1 ='fleur-de-lis'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
-                        icon1 ='microsoft-windows'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    elif icon1.lower() in ['nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
-                        icon1 ='bank'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    else:
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-            else:
+            if a == []:
+                icon1 ='alert-outline'
+                text1 = 'Error message:'
+                secondaryText ='Database not found'
+                tertiaryText = 'or password not registered'
+                label = 'APP message'
+                teste = lista_colheita_database()
+                b.add_widget(teste)
+                teste.data(text1, secondaryText, tertiaryText, label, icon1)
+        
+        elif d.isnumeric():
+            a = a2
+            
+            for i in a:
                 
-                a = a3
+                i = i.split(',')
+                text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
 
-                for i in a:
-                    
-                    i = i.split(',')
-                    text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
+                if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
+                    icon1 ='file-cog-outline'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
+                    icon1 ='fleur-de-lis'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
+                    icon1 ='microsoft-windows'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['meu banco','my bank','bank','citbank','caixa','pan','inter','c6bank','nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
+                    icon1 ='bank'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['escola','ifma','ceuma','ufma','.edu','edu','educação','education','educacao','uema','undb','professor','aluno','alunos','professores','usp','ufsp','ufmg','ufrj','faculdade','laboro','pitagoras']:
+                    icon1 = 'school-outline'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                else:
+                        teste = lista_colheita_database()
+                        b.add_widget(teste)
+                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
 
-                    if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
-                        icon1 ='file-cog-outline'
+            if a == []:
+                icon1 ='alert-outline'
+                text1 = 'Error message:'
+                secondaryText ='Database not found'
+                tertiaryText = 'or password not registered'
+                label = 'APP message'
+                teste = lista_colheita_database()
+                b.add_widget(teste)
+                teste.data(text1, secondaryText, tertiaryText, label, icon1)
+             
+        elif d.isalnum():
+            a = a3
+            bb = a4
+            
+            for z in bb:
+                a.append(z)
+            
+            for i in a:
+                
+                i = i.split(',')
+                text1,secondaryText,tertiaryText,label,icon1 =i[0],i[1],i[2].replace('https:','').replace("/",'').rstrip('').lstrip(""),i[3],i[2].replace('www','').replace('/','').replace('.','').replace('https:','').replace("org", '').replace('br','').replace('com','').lstrip("").rstrip("")
+
+                if icon1 in ['Site not informed','not site','site não informado','not informed','n informado','não informado']:
+                    icon1 ='file-cog-outline'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
+                    icon1 ='fleur-de-lis'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
+                    icon1 ='microsoft-windows'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['meu banco','my bank','bank','citbank','caixa','pan','inter','c6bank','nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
+                    icon1 ='bank'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                elif icon1.lower() in ['escola','ifma','ceuma','ufma','.edu','edu','educação','education','educacao','uema','undb','professor','aluno','alunos','professores','usp','ufsp','ufmg','ufrj','faculdade','laboro','pitagoras']:
+                    icon1 = 'school-outline'
+                    teste = lista_colheita_database()
+                    b.add_widget(teste)
+                    teste.data(text1, secondaryText, tertiaryText, label, icon1)
+                else:
                         teste = lista_colheita_database()
                         b.add_widget(teste)
                         teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    elif icon1.lower() in ['paxtuescoteiros','escout','scout','paxtu','escoteiros do brasil','escoteirosdobrasil','escoteiro','escoteiroS']:
-                        icon1 ='fleur-de-lis'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    elif icon1.lower() in ['360','office 360','office','windows','microsoft','github','microsoftteams','teams','xbox']:
-                        icon1 ='microsoft-windows'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    elif icon1.lower() in ['nubank','will','santander','banco do brasil','itaú','itau','next','bradesco','banco']:
-                        icon1 ='bank'
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
-                    else:
-                        teste = lista_colheita_database()
-                        b.add_widget(teste)
-                        teste.data(text1, secondaryText, tertiaryText, label, icon1)
+            
+            if a == []:
+                icon1 ='alert-outline'
+                text1 = 'Error message:'
+                secondaryText ='Database not found'
+                tertiaryText = 'or password not registered'
+                label = 'APP message'
+                teste = lista_colheita_database()
+                b.add_widget(teste)
+                teste.data(text1, secondaryText, tertiaryText, label, icon1)
+          
+        a1,a2,a3,a4 = None,None,None,None
+        a = None
 
     def font_size(self, value):
 
@@ -715,8 +797,7 @@ class App_principal(md_application):
             self.theme_cls.theme_style = 'Light'
             self.theme_cls.primary_palette = "BlueGray"
             self.theme_cls.primary_hue = '500'
-           
-     
+                
 if __name__ == '__main__':
     project = App_principal()
     project.run()

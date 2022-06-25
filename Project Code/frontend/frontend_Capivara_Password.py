@@ -233,8 +233,7 @@ box = '''
 
                         MDList:
                             id: container2
-
-                            lista_colheita_database:
+                        
 
 <Tela3>: 
     name: 'tela3'
@@ -338,7 +337,38 @@ box = '''
         orientation: 'vertical'
 
         FloatLayout:
+            MDRectangleFlatIconButton:
+                icon: "github"
+                text: "project on github".title()
+                text_color: app.theme_cls.primary_color
+                line_color: 1, 1, 1, 1
+                theme_icon_color: "Custom"
+                icon_color: app.theme_cls.primary_color
 
+                pos_hint: {'center_x':0.5, 'center_y':0.2}
+                ripple_rad_default: 0.70
+                ripple_scale: .3
+                ripple_duration_in_fast: .1
+                ripple_duration_out: .01
+                ripple_duration_in_slow: 2
+                on_press: root.test2()
+
+            MDRectangleFlatIconButton:
+                icon: "youtube"
+                text: "project on youtube".title()
+                text_color: app.theme_cls.primary_color
+                line_color: 1, 1, 1, 1
+                theme_icon_color: "Custom"
+                icon_color: app.theme_cls.primary_color
+
+                pos_hint: {'center_x':0.5, 'center_y':0.122}
+                ripple_rad_default: 0.70
+                ripple_scale: .3
+                ripple_duration_in_fast: .1
+                ripple_duration_out: .01
+                ripple_duration_in_slow: 2
+                on_press: root.test()
+            
             Image:
                 id: image
                 source: 'test3.png'
@@ -346,7 +376,59 @@ box = '''
                 size_hint: .3, .3
                 pos_hint: {'center_x':0.5, 'center_y':0.83}
                 radius: [35, 35, 35, 35, 35]
-
+            MDLabel:
+                text: 'Made by:'
+                pos_hint: {'center_x':0.5, 'center_y':0.73}
+                halign: "center"
+                font_style: 'H6'
+            MDLabel:
+                text: 'Saulo Ferro Maciel'
+                pos_hint: {'center_x':0.5, 'center_y':0.68}
+                halign: "center"
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: 'Programming languages used:'.title()
+                pos_hint: {'center_x':0.5, 'center_y':0.63}
+                halign: "center"
+                font_style: 'H6'
+                font_size: 17
+            MDLabel:
+                text: '> Python <'
+                pos_hint: {'center_x':0.5, 'center_y':0.57}
+                halign: "center"
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: '> kivylang <'
+                pos_hint: {'center_x':0.5, 'center_y':0.53}
+                halign: "center"
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: '> SQL <'
+                pos_hint: {'center_x':0.5, 'center_y':0.49}
+                halign: "center"
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: "Project's Goal:"
+                pos_hint: {'center_x':0.5, 'center_y':0.42}
+                halign: "center"
+                font_style: 'H6'
+                font_size: 17
+            MDLabel:
+                text: """Train Coding In Python And SQL"""
+                pos_hint: {'center_x':0.5, 'center_y':0.37}
+                halign: "center"
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: """Explore Python Modules And Cybersecurity"""
+                pos_hint: {'center_x':0.5, 'center_y':0.335}
+                halign: "center"
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: """Train mobile development""".title()
+                pos_hint: {'center_x':0.5, 'center_y':0.3}
+                halign: "center"
+                font_style: 'Subtitle1'    
+                
 <ToolBar>:
 
     id:bar2
