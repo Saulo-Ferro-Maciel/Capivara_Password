@@ -4,6 +4,15 @@
 
 >trying to create a password manager
 
+Copyright 2022 Saulo Ferro Maciel   
+
+   Licensed under the Apache License, Version 2.0 (the "License">
+   you may not use this file except in compliance with the Licen>
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+
 **Programming Languages ​​Used:**
 1. Python
 2. SQL
