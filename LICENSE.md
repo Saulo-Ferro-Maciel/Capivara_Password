@@ -5,7 +5,7 @@
  Direitos autorais 2022 Saulo Ferro Maciel
 
    Licenciado sob a Licença Apache, Versão 2.0 (a "Licença");
-   você não pode usar este arquivo exceto em conformidade com a >
+   você não pode usar este arquivo exceto em conformidade com a Licença.
    Você pode obter uma cópia da Licença em
 
        http://www.apache.org/licenses/LICENSE-2.0
