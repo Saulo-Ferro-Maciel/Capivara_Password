@@ -2,6 +2,16 @@
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
+ Direitos autorais 2022 Saulo Ferro Maciel
+
+   Licenciado sob a Licença Apache, Versão 2.0 (a "Licença");
+   você não pode usar este arquivo exceto em conformidade com a >
+   Você pode obter uma cópia da Licença em
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+
+
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
