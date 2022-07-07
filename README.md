@@ -8,7 +8,7 @@
 
 **Programming Languages ​​Used:**
 1. Python
-2. SQL
+2. SQLite
 3. Kivylang - kivy language
 
 **Developer Contact:**                                 
