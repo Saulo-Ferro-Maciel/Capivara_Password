@@ -3,7 +3,7 @@
 
 **About the project:**  
 
->Every human being who enjoys programming has already created a project to train such skills, and in my case, I made an application - mobile program - to manage my passwords, the project is native in python - frameworks, database and interface.
+>Every human being who enjoys programming has already created a project to train such skills, and in my case, I made this application - mobile program - to manage my passwords, the project is native in python - frameworks, database and interface.
 #
 Copyright 2022 Saulo Ferro Maciel
 
